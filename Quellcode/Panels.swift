@@ -7,20 +7,8 @@ struct InspectorView: View {
 
     var body: some View {
         VStack(alignment: .leading, spacing: 0) {
-            Picker("Werkzeug", selection: $editor.tool) {
-                ForEach(Tool.allCases) { tool in
-                    Image(systemName: tool.icon).help(tool.title).tag(tool)
-                }
-            }
-            .pickerStyle(.segmented)
-            .labelsHidden()
-            .padding(12)
-
-            Divider()
-
             ScrollView {
                 VStack(alignment: .leading, spacing: 14) {
-                    Text(editor.tool.title).font(.headline)
                     if editor.selected != nil { selectionActions }
                     switch editor.tool {
                     case .crop: CropPanel(editor: editor)
@@ -86,7 +74,7 @@ struct CropPanel: View {
                 ForEach(CropPanel.aspects, id: \.name) { item in
                     Button(item.name) { editor.setAspect(item.value) }
                         .buttonStyle(.bordered)
-                        .tint(item.value == editor.aspect ? Color.accentColor : nil)
+                        .tint(item.value == editor.aspect ? teal : nil)
                 }
             }
             Text("Ecken ziehen, um den Ausschnitt zu ändern; im Rahmen ziehen, um ihn zu verschieben.")
@@ -170,7 +158,7 @@ struct FilterPanel: View {
                                 .clipShape(RoundedRectangle(cornerRadius: 8))
                                 .overlay(
                                     RoundedRectangle(cornerRadius: 8)
-                                        .stroke(active ? Color.accentColor : Color.clear, lineWidth: 3)
+                                        .stroke(active ? teal : Color.clear, lineWidth: 3)
                                 )
                         }
                         Text(preset.name).font(.caption).foregroundStyle(active ? .primary : .secondary)
@@ -225,7 +213,7 @@ struct TextPanel: View {
             } else {
                 Button("Text hinzufügen") { editor.addText() }
                     .buttonStyle(.borderedProminent)
-                Text("Einen Text im Bild anklicken, um ihn zu bearbeiten. Am grünen Griff lässt er sich skalieren und drehen.")
+                Text("Einen Text im Bild anklicken, um ihn zu bearbeiten. Am Griff lässt er sich skalieren und drehen.")
                     .font(.caption).foregroundStyle(.secondary)
             }
         }

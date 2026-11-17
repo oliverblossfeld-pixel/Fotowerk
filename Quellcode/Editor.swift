@@ -18,6 +18,17 @@ enum Tool: String, CaseIterable, Identifiable {
         }
     }
 
+    var subtitle: String {
+        switch self {
+        case .crop: return "Ausschnitt wählen, drehen und spiegeln"
+        case .adjust: return "Helligkeit, Kontrast und Farben einstellen"
+        case .filter: return "Einen fertigen Look auswählen"
+        case .text: return "Text hinzufügen und gestalten"
+        case .sticker: return "Sticker auf dem Bild platzieren"
+        case .brush: return "Frei auf dem Bild malen"
+        }
+    }
+
     var icon: String {
         switch self {
         case .crop: return "crop"

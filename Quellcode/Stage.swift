@@ -8,8 +8,6 @@ struct StageView: View {
     @State private var live: [CGPoint] = []
     @State private var holder = DragHolder()
 
-    private static let accent = Color(red: 0.21, green: 0.82, blue: 0.65)
-
     private enum Drag {
         case idle
         case draw
@@ -191,7 +189,7 @@ struct StageView: View {
         g.stroke(frame, with: .color(.white), style: StrokeStyle(lineWidth: 1.5 * k, dash: [6 * k, 4 * k]))
         let r = 7 * k
         let knob = Path(ellipseIn: CGRect(x: b.width / 2 - r, y: b.height / 2 - r, width: 2 * r, height: 2 * r))
-        g.fill(knob, with: .color(accent))
+        g.fill(knob, with: .color(teal))
         g.stroke(knob, with: .color(.white), lineWidth: 2 * k)
     }
 
